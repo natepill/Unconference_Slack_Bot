@@ -2,39 +2,36 @@
 
 const SlackBot = require('slackbots');
 const axios = require('axios');
-// const csvJSON = require('./utils/csv-to-json')
-// const fs = require('fs');
-// require('dotenv').config();
+const csvJSON = require('./utils/csv-to-json')
+const fs = require('fs');
+require('dotenv').config();
 
 
 const bot = new SlackBot({
-    token: "xoxb-569833390945-569851127617-dLInZww2cnGaiwLpEoZP3Rwe",
+    token: process.env.TOKEN,
     name: 'UnconferenceReminderBot'
 });
 
-//Start Handler
-// bot.on('start', () => {
-//     const params = {
-//         icon_emoji: ":smiley:"
-//     }
-//     bot.postMessageToChannel('general', 'This is a message to General Channel', params);
-// })
+// Start Handler
+bot.on('start', () => {
+    const params = {
+        icon_emoji: ":smiley:"
+    }
+    bot.postMessageToChannel('general', 'This is a message to General Channel', params);
+})
 
-//Required the csv file, converting it into json, then writing the json object to a file
+// Required the csv file, converting it into json, then writing the json object to a file
 
-// csvFile = require('test-csv.csv');
-// console.log(JSON.stringify(csvJSON(csvFile)));
-//
-// fs.writeFile("./object.json", JSON.stringify(csvJSON(csvFile)), (err) => {
-//     if (err) {
-//         console.error(err);
-//         return;
-//     };
-//     console.log("File has been created");
-// });
+csvFile = require('test-csv.csv');
+console.log(JSON.stringify(csvJSON(csvFile)));
 
-
-
+fs.writeFile("./object.json", JSON.stringify(csvJSON(csvFile)), (err) => {
+    if (err) {
+        console.error(err);
+        return;
+    };
+    console.log("File has been created");
+});
 
 
 
@@ -74,38 +71,33 @@ const bot = new SlackBot({
 
 
 // Error Handler
-// bot.on('error', (err) => console.log(err));
+bot.on('error', (err) => console.log(err));
 
 
-//Message Handler
-// bot.on('message', (data) => {
-//     if(data.type !== 'message'){
-//         return;
-//     }
-//
-//     handleMessage(data.text);
-//
-// })
-//
-//
-// // Respond to messages
-// function handleMessage(message){
-//     if(message.includes(' chucknorris')){
-//         chuckResponse();
-//
-//     }
-// }
-//
-//
-//
-//
-// // Tell ChuckNorris Joke
-//
-// function chuckResponse(){
-//
-//     const params = {
-//         icon_emoji: ":laughing:"
-//     }
-//
-//     bot.postMessageToChannel('general', 'This is a message to General Channel', params);
-// }
+// Message Handler
+bot.on('message', (data) => {
+    if(data.type !== 'message'){
+        return;
+    }
+
+    handleMessage(data.text);
+
+})
+
+// Respond to messages
+function handleMessage(message){
+    if(message.includes(' chucknorris')){
+        chuckResponse();
+
+    }
+}
+
+// Tell ChuckNorris Joke
+function chuckResponse(){
+
+    const params = {
+        icon_emoji: ":laughing:"
+    }
+
+    bot.postMessageToChannel('general', 'This is a message to General Channel', params);
+}
