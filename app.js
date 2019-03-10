@@ -20,13 +20,32 @@ bot.on('start', () => {
 
 })
 
+// TODO: Add everything that this app does to a README.md
+
+// NOTE: SHOULD HOLD OFF ON CLEANING AND READING IN CSV FILE UNTIL AAKASH UPDATES IT
+// TODO: Clean CSV file locally in pandas,
+ // grab row in csv file based on current date,
+// use that row to identify who is speaking that week and what their topic is,
+// Send message to each user in csv row to remind them to prepare their talk,
+// The message should read: "Hey <Insert Name>! This is a reminder that you have your unconference talk on <Insert Topic> assigned for this week!"
+// user should be able to respond with:
+// NOTE: Users should be alerted to the fact that they are sending information to a channel with other students and instructors
+// NOTE: May not add this feature if those in channel do not want it.
+// /confirm: sends message to unconference channel saying that the user confirmed their unconference talk and topic
+// /deny: sends message to unconference channel saying that they are cancelling
+
+
+
+
 // NOTE: Methods that I may be using:
+
+// postTo(name, message [, params, callback]) (return: promise) - posts a message to channel | group | user by name,
+// postMessageToUser(name, message [, params, callback]) (return: promise) - posts a direct message by user name,
+
 
 // getUser(name) (return: promise) - gets user by name,
 // getChatId(name) (return: promise) - it returns or opens and returns a direct message channel ID,
 // postMessage(id, text, params) (return: promise) - posts a message to channel | group | user by ID
-// postTo(name, message [, params, callback]) (return: promise) - posts a message to channel | group | user by name,
-// postMessageToUser(name, message [, params, callback]) (return: promise) - posts a direct message by user name,
 
 
 // NOTE: Notify the unconference channel that someone has confirmed
