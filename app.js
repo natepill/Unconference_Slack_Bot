@@ -27,7 +27,8 @@ bot.on('start', () => {
  // grab row in csv file based on current date,
 // use that row to identify who is speaking that week and what their topic is,
 // Send message to each user in csv row to remind them to prepare their talk,
-// The message should read: "Hey <Insert Name>! This is a reminder that you have your unconference talk on <Insert Topic> assigned for this week!"
+// The message should read: "Hey <Insert Name>! This is a reminder that you have your unconference talk on <Insert Topic> scheduled for this week!"
+// "Please respond with /<OPTION>" list out options and what they do
 // user should be able to respond with:
 // NOTE: Users should be alerted to the fact that they are sending information to a channel with other students and instructors
 // NOTE: May not add this feature if those in channel do not want it.
