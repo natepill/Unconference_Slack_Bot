@@ -2,23 +2,41 @@
 
 const SlackBot = require('slackbots');
 const axios = require('axios');
-require('dotenv').config();
+// const csvJSON = require('./utils/csv-to-json')
+// const fs = require('fs');
+// require('dotenv').config();
 
 
 const bot = new SlackBot({
-    token: process.env.TOKEN,
+    token: "xoxb-569833390945-569851127617-dLInZww2cnGaiwLpEoZP3Rwe",
     name: 'UnconferenceReminderBot'
 });
 
 //Start Handler
-bot.on('start', () => {
-    const params = {
-        icon_emoji: ":smiley:"
-    }
+// bot.on('start', () => {
+//     const params = {
+//         icon_emoji: ":smiley:"
+//     }
+//     bot.postMessageToChannel('general', 'This is a message to General Channel', params);
+// })
 
-    bot.postMessageToChannel('general', 'This is a message to General Channel', params);
+//Required the csv file, converting it into json, then writing the json object to a file
 
-})
+// csvFile = require('test-csv.csv');
+// console.log(JSON.stringify(csvJSON(csvFile)));
+//
+// fs.writeFile("./object.json", JSON.stringify(csvJSON(csvFile)), (err) => {
+//     if (err) {
+//         console.error(err);
+//         return;
+//     };
+//     console.log("File has been created");
+// });
+
+
+
+
+
 
 // TODO: Add everything that this app does to a README.md
 
@@ -34,7 +52,6 @@ bot.on('start', () => {
 // NOTE: May not add this feature if those in channel do not want it.
 // /confirm: sends message to unconference channel saying that the user confirmed their unconference talk and topic
 // /deny: sends message to unconference channel saying that they are cancelling
-
 
 
 
@@ -56,39 +73,39 @@ bot.on('start', () => {
 
 
 
-//Error Handler
-bot.on('error', (err) => console.log(err));
+// Error Handler
+// bot.on('error', (err) => console.log(err));
 
 
 //Message Handler
-bot.on('message', (data) => {
-    if(data.type !== 'message'){
-        return;
-    }
-
-    handleMessage(data.text);
-
-})
-
-
-//Respond to messages
-function handleMessage(message){
-    if(message.includes(' chucknorris')){
-        chuckResponse();
-
-    }
-}
-
-
-
-
-//Tell ChuckNorris Joke
-
-function chuckResponse(){
-
-    const params = {
-        icon_emoji: ":laughing:"
-    }
-
-    bot.postMessageToChannel('general', 'This is a message to General Channel', params);
-}
+// bot.on('message', (data) => {
+//     if(data.type !== 'message'){
+//         return;
+//     }
+//
+//     handleMessage(data.text);
+//
+// })
+//
+//
+// // Respond to messages
+// function handleMessage(message){
+//     if(message.includes(' chucknorris')){
+//         chuckResponse();
+//
+//     }
+// }
+//
+//
+//
+//
+// // Tell ChuckNorris Joke
+//
+// function chuckResponse(){
+//
+//     const params = {
+//         icon_emoji: ":laughing:"
+//     }
+//
+//     bot.postMessageToChannel('general', 'This is a message to General Channel', params);
+// }
