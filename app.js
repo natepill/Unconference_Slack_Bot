@@ -21,6 +21,25 @@ const bot = new SlackBot({
     name: 'UnconferenceReminderBot'
 });
 
+
+// TODO: Need to add an interval. How can I have the bot start up every Monday at 12:00 P.M?
+// TODO: Probably should use Moment.js in order to create a timestamp that reflect the format of the json keys
+// TODO: Probably need a heroku scheduler to run the server every Monday at 11:59 --> https://devcenter.heroku.com/articles/scheduler
+
+var now = new Date();
+var millisTill12 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0, 0) - now;
+ // NOTE: Is this conditional even needed?
+ // The entirity of this script is run every Monday at 11:59 via a Heroku Scheduler. If millisTill12 < 0 (When the timer counts down to 12:00, run setTimeout )
+// Since the script is being run every Monday at 11:58, we don't really need to reset the milisecond countdown timer (millisTill12), because the current date is being reset everytime we run the script from Heroku
+if (millisTill12 < 0) {
+     millisTill12 += 86400000; // it's after 10am, try 10am tomorrow.
+     console.log("It's 10:00 AM!")
+}
+setTimeout(function(){console.log("ASDASDASDAS");}, millisTill12);
+
+
+
+
 // Start Handler
 bot.on('start', () => {
 
@@ -30,6 +49,8 @@ bot.on('start', () => {
         console.log(body);
       }
     });
+
+
 
 
     const params = {
@@ -78,6 +99,8 @@ bot.on('start', () => {
 
 
 
+
+//NOTE: Below is not needed for an MVP. Keeping it because I may have users want to respond to the slack bot via /commands to confirm or deny the talk
 
 
 // Error Handler
