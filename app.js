@@ -2,8 +2,10 @@
 
 const SlackBot = require('slackbots');
 const axios = require('axios');
-const csvJSON = require('./utils/csv-to-json')
+const csvJSON = require('./utils/csv-to-json');
 const fs = require('fs');
+const csv = require('csv-parser');
+
 require('dotenv').config();
 
 
@@ -13,25 +15,33 @@ const bot = new SlackBot({
 });
 
 // Start Handler
-bot.on('start', () => {
-    const params = {
-        icon_emoji: ":smiley:"
-    }
-    bot.postMessageToChannel('general', 'This is a message to General Channel', params);
-})
+// bot.on('start', () => {
+//     const params = {
+//         icon_emoji: ":smiley:"
+//     }
+//     bot.postMessageToChannel('general', 'This is a message to General Channel', params);
+// })
 
 // Required the csv file, converting it into json, then writing the json object to a file
 
-csvFile = require('test-csv.csv');
-console.log(JSON.stringify(csvJSON(csvFile)));
 
-fs.writeFile("./object.json", JSON.stringify(csvJSON(csvFile)), (err) => {
-    if (err) {
-        console.error(err);
-        return;
-    };
-    console.log("File has been created");
-});
+var csvArray = [];
+
+fs.createReadStream('./test-data.csv')
+  .pipe(csv())
+  .on('data', (data) => csvArray.push(data));
+  
+console.log(csvArray);
+//
+// console.log(JSON.stringify(csvJSON(csvFile)));
+//
+// fs.writeFile("./object.json", JSON.stringify(csvJSON(csvFile)), (err) => {
+//     if (err) {
+//         console.error(err);
+//         return;
+//     };
+//     console.log("File has been created");
+// });
 
 
 
