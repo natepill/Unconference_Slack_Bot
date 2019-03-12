@@ -15,9 +15,11 @@ Reference: https://docs.google.com/document/d/1iqY68uklD3nJmeC_WnXTCN0Dwx0iMpnc9
 
 To process the data from the csv, We are currently downloading the Google Spreadsheets as a csv and utilizing the the file in an external API that responds back to this project's server. The API will return the names and topics of the people who are supposed to be giving Unconference talks.
 
-**Unconference Google Spreadsheets Schedule**:
+**Unconference Google Spreadsheets Schedule**
 https://docs.google.com/spreadsheets/d/1eJNFUyjM74hElIS8XgvasPpx-CKacNyfx_HAbZfjmuc/edit
-**Unconference API repo**: https://github.com/natepill/Unconference-Flask-API
+
+**Unconference API repo**
+https://github.com/natepill/Unconference-Flask-API
 
 Hitting this endpoint will return a json object with key, values looking like:
 "(Current Date)": {(object with key,values of who is speaking and their topic)}
