@@ -3,10 +3,17 @@
 const SlackBot = require('slackbots');
 const axios = require('axios');
 const csvJSON = require('./utils/csv-to-json');
+const http = require('http');
+const request = require('request');
 const fs = require('fs');
 const csv = require('csv-parser');
-
 require('dotenv').config();
+
+// var options = {
+//      path:  "https://unconference-api.herokuapp.com/"
+//      method: "GET"
+//  };
+
 
 
 const bot = new SlackBot({
@@ -15,39 +22,32 @@ const bot = new SlackBot({
 });
 
 // Start Handler
-// bot.on('start', () => {
-//     const params = {
-//         icon_emoji: ":smiley:"
-//     }
-//     bot.postMessageToChannel('general', 'This is a message to General Channel', params);
-// })
+bot.on('start', () => {
+
+
+    var req = request("https://unconference-api.herokuapp.com/", function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log(body);
+      }
+    });
+
+
+    const params = {
+        icon_emoji: ":smiley:"
+    }
+
+    bot.postMessageToChannel('general', 'This is a message to General Channel', params);
+    var message = "Hey <Insert Name>! This is a reminder that you have your unconference talk on <Insert Topic> scheduled for this week!"
+    bot.postTo('natepill', message, params);
+
+})
 
 // Required the csv file, converting it into json, then writing the json object to a file
 
 
-var csvArray = [];
-
-fs.createReadStream('./test-data.csv')
-  .pipe(csv())
-  .on('data', (data) => csvArray.push(data));
-  
-console.log(csvArray);
-//
-// console.log(JSON.stringify(csvJSON(csvFile)));
-//
-// fs.writeFile("./object.json", JSON.stringify(csvJSON(csvFile)), (err) => {
-//     if (err) {
-//         console.error(err);
-//         return;
-//     };
-//     console.log("File has been created");
-// });
 
 
-
-// TODO: Add everything that this app does to a README.md
-
-// NOTE: SHOULD HOLD OFF ON CLEANING AND READING IN CSV FILE UNTIL AAKASH UPDATES IT
+// NOTE: SHOULD HOLD OFF ON CLEANING AND READING IN CSV FILE UNTIL AAKASH AND I UPDATE IT
 // TODO: Clean CSV file locally in pandas,
  // grab row in csv file based on current date,
 // use that row to identify who is speaking that week and what their topic is,
