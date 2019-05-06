@@ -1,5 +1,4 @@
-// Run app with npm start
-
+// Can run app with npm start
 const SlackBot = require('slackbots');
 const axios = require('axios');
 const csvJSON = require('./utils/csv-to-json');
@@ -8,6 +7,32 @@ const request = require('request');
 const fs = require('fs');
 const csv = require('csv-parser');
 require('dotenv').config();
+
+
+// User Story:
+// Medi is scrolling through Slack on Monday around Noon when he gets a message from the Unconference Slack Bot
+// that is Notifying him that he is up to present this week
+
+// Rquirements:
+// Users should be gettting a message at Noon on Monday everyweek based on spreadsheet entries
+// There should only be one message sent out
+// The Slackbot should appropriatly deal with user input, ie: confirming/denying/rescheduling schedules
+// Slackbot should stop when there are no more people to alert
+
+
+// Business Value:
+// Automated communication for Unconference messaging is a great way to save employee time that they could be
+// spending on their work for the comapny. This SlackBot removes the need for humans to communicate about Unconference updates
+// and converse about scheduling.
+
+
+// Slackbot JS documentation
+// https://github.com/mishk0/slack-bot-api
+
+// Slack Channel Testing
+// https://slack-bot-testingtalk.slack.com/messages/DGTR9HVKQ/
+
+
 
 // var options = {
 //      path:  "https://unconference-api.herokuapp.com/"
@@ -36,6 +61,8 @@ if (millisTill12 < 0) {
      console.log("It's 10:00 AM!")
 }
 setTimeout(function(){console.log("ASDASDASDAS");}, millisTill12);
+
+
 
 
 
